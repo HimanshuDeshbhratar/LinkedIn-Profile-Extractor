@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: linkedin-profile-api
+    runtime: node
+    plan: free
+    buildCommand: npm run install:all && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: LI_COOKIE
+        sync: false
+      - key: LI_AT
+        sync: false
+      - key: JSESSIONID
+        sync: false
+      - key: LINKEDIN_REQUEST_DELAY_MS
+        value: 1500
+      - key: LINKEDIN_USE_ENRICHMENT
+        value: false
+      - key: LINKEDIN_USE_GRAPHQL
+        value: false
+      - key: API_KEY
+        sync: false
+      - key: CACHE_TTL_SECONDS
+        value: 3600
