@@ -66,15 +66,21 @@ app.use(
 
 app.use('/api', apiKeyAuth, profileRoutes);
 
-const frontendDist = path.join(__dirname, '../../frontend/dist');
+// API routes
+app.use('/api', apiKeyAuth, profileRoutes);
+
+// Path to built React frontend
+const frontendDist = path.resolve(__dirname, '../../frontend/dist');
+
+// Serve React static files FIRST
 app.use(express.static(frontendDist));
-app.get('*', (req, res, next) => {
-  if (req.path.startsWith('/api')) return next();
+
+// Serve React app for all non-API routes
+app.get(/^(?!\/api).*/, (req, res, next) => {
   res.sendFile(path.join(frontendDist, 'index.html'), (err) => {
-    if (err) next();
+    if (err) next(err);
   });
 });
-
 
 app.use(notFoundHandler);
 app.use(errorHandler);
