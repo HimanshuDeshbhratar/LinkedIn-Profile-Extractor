@@ -64,7 +64,7 @@ app.use(
 
 
 
-app.use('/api', apiKeyAuth, profileRoutes);
+// app.use('/api', apiKeyAuth, profileRoutes);
 
 // API routes
 app.use('/api', apiKeyAuth, profileRoutes);
