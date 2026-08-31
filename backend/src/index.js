@@ -71,7 +71,10 @@ app.use(
 app.use('/api', apiKeyAuth, profileRoutes);
 
 // Path to built React frontend
-const frontendDist = path.resolve(__dirname, '../../frontend/dist');
+// const frontendDist = path.resolve(__dirname, '../../frontend/dist');
+const frontendDist = path.resolve(process.cwd(), 'frontend', 'dist');
+
+console.log('[server] Frontend path:', frontendDist);
 
 // Serve React static files FIRST
 app.use(express.static(frontendDist));
