@@ -52,15 +52,17 @@ app.use(
   })
 );
 
-app.get('/', (_req, res) => {
-  res.json({
-    name: 'LinkedIn Profile API',
-    description: 'Reverse-engineered LinkedIn Voyager API wrapper',
-    docs: '/api/docs',
-    health: '/api/health',
-    usage: '/api/profile?url=https://www.linkedin.com/in/username',
-  });
-});
+// app.get('/', (_req, res) => {
+//   res.json({
+//     name: 'LinkedIn Profile API',
+//     description: 'Reverse-engineered LinkedIn Voyager API wrapper',
+//     docs: '/api/docs',
+//     health: '/api/health',
+//     usage: '/api/profile?url=https://www.linkedin.com/in/username',
+//   });
+// });
+
+
 
 app.use('/api', apiKeyAuth, profileRoutes);
 
@@ -72,6 +74,7 @@ app.get('*', (req, res, next) => {
     if (err) next();
   });
 });
+
 
 app.use(notFoundHandler);
 app.use(errorHandler);
